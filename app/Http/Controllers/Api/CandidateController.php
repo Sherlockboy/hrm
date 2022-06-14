@@ -8,7 +8,6 @@ use App\Http\Requests\Candidate\CreateRequest;
 use App\Http\Requests\Candidate\UpdateRequest;
 use App\Http\Resources\CandidateResource;
 use App\Models\Candidate;
-use App\Models\File;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
@@ -40,7 +39,7 @@ class CandidateController extends Controller
 
     public function show(Candidate $candidate): CandidateResource
     {
-        $candidate->load('skills', 'files');
+        $candidate->load('skills', 'files', 'comments.status');
 
         return new CandidateResource($candidate);
     }

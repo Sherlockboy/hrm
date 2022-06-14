@@ -14,7 +14,7 @@ class StatusSeeder extends Seeder
      */
     public function run()
     {
-        $statuses = collect(['Initial', 'First Contact', 'Interview', 'Tech Assignment', 'Rejected', 'Hired']);
+        $statuses = collect(['First Contact', 'Interview', 'Tech Assignment', 'Rejected', 'Hired']);
 
         $statuses->each(fn(string $status) => Status::create(['name' => $status]));
     }

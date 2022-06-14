@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\CandidateController;
+use App\Http\Controllers\Api\CommentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,4 +25,6 @@ Route::prefix('v1')
     ->group(function () {
         Route::apiResource('candidates', CandidateController::class)->except('update');
         Route::post('candidates/{candidate}', [CandidateController::class, 'update'])->name('candidates.update');
+
+        Route::apiResource('comments', CommentController::class)->except('index', 'show');
     });

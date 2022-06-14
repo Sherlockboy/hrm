@@ -29,4 +29,9 @@ class Candidate extends Model
     {
         return $this->hasMany(File::class);
     }
+
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class);
+    }
 }
