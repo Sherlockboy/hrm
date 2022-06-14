@@ -73,4 +73,5 @@ return [
         public_path('storage') => storage_path('app/public'),
     ],
 
+    'candidate_files_directory' => 'candidates',
 ];

@@ -22,7 +22,8 @@ class CandidateResource extends JsonResource
             'min_salary' => $this->min_salary,
             'max_salary' => $this->max_salary,
             'linkedin_url' => $this->linkedin_url,
-            'skills' => SkillResource::collection($this->whenLoaded('skills'))
+            'skills' => SkillResource::collection($this->whenLoaded('skills')),
+            'files' => FileResource::collection($this->whenLoaded('files'))
         ];
     }
 }
