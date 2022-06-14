@@ -21,17 +21,27 @@ class CandidateController extends Controller
     {
         $candidate = Candidate::create($request->validated());
 
+        if($request->has('skills')) {
+            $candidate->skills()->attach($request->input('skills'));
+        }
+
         return new CandidateResource($candidate);
     }
 
     public function show(Candidate $candidate): CandidateResource
     {
+        $candidate->load('skills');
+
         return new CandidateResource($candidate);
     }
 
     public function update(UpdateRequest $request, Candidate $candidate): CandidateResource
     {
         $candidate->update($request->validated());
+
+        if($request->has('skills')) {
+            $candidate->skills()->sync($request->input('skills'));
+        }
 
         return new CandidateResource($candidate);
     }
