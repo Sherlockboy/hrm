@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Api;
 use App\Contracts\FileManager;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Candidate\CreateRequest;
+use App\Http\Requests\Candidate\GetAllRequest;
 use App\Http\Requests\Candidate\UpdateRequest;
 use App\Http\Resources\CandidateResource;
 use App\Models\Candidate;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
@@ -17,9 +19,17 @@ class CandidateController extends Controller
     {
     }
 
-    public function index(): AnonymousResourceCollection
+    public function index(GetAllRequest $request): AnonymousResourceCollection
     {
-        return CandidateResource::collection(Candidate::all());
+        $candidates = Candidate::query()
+            ->when(
+                $request->has('q'),
+                fn(Builder $query) => $query->search($request->input('q'))
+            )
+            ->with('skills')
+            ->get();
+
+        return CandidateResource::collection($candidates);
     }
 
     public function store(CreateRequest $request): CandidateResource
