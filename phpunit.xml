@@ -23,7 +23,7 @@
         <env name="CACHE_DRIVER" value="array"/>
         <env name="DB_CONNECTION" value="mysql"/>
         <env name="DB_USERNAME" value="root"/>
-        <env name="DB_DATABASE" value="redberry_hrm_test"/>
+        <env name="DB_DATABASE" value="hrm_test"/>
         <env name="DB_HOST" value="127.0.0.1" />
         <env name="DB_PORT" value="3306" />
         <env name="MAIL_MAILER" value="array"/>
